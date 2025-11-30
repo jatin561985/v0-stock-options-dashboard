@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { getUpcomingExpiries } from '@/lib/date-utils'
 import { AppSidebar } from "@/components/app-sidebar"
 import { AIAssistantDrawer } from "@/components/ai-assistant-drawer"
 import { MarketStatus } from "@/components/market-status"
