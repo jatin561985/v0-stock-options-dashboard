@@ -1,4 +1,5 @@
-"use client"
+33
+  "use client"
 
 import { useState, useEffect } from "react"
 import { getUpcomingExpiries } from '@/lib/date-utils'
@@ -31,6 +32,15 @@ import { Bot } from "lucide-react"
 export default function Dashboard() {
   const [activePage, setActivePage] = useState("dashboard")
   const [isAIAssistantOpen, setIsAIAssistantOpen] = useState(false)
+    const [selectedIndex, setSelectedIndex] = useState<'NIFTY' | 'SENSEX'>('NIFTY')
+    const [expiryDates, setExpiryDates] = useState<string[]>(getUpcomingExpiries('NIFTY'))
+    const [selectedExpiration, setSelectedExpiration] = useState<string>(getUpcomingExpiries('NIFTY')[0])
+
+    useEffect(() => {
+          const newExpiries = getUpcomingExpiries(selectedIndex)
+          setExpiryDates(newExpiries)
+          setSelectedExpiration(newExpiries[0])
+        }, [selectedIndex])
 
   const handleSendToAI = (question: string) => {
     setIsAIAssistantOpen(true)
